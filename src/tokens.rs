@@ -31,17 +31,17 @@ pub enum Token {
     Subtract, // -
     Multiply, // *
     Divide, // /
-    Modulo, // REM
+    Modulo, // %
     Exponentiate, // ^
 
     //boolean operators
-    And, // AND
-    Or, // OR
-    Not, // NOT
+    And, // &&
+    Or, // ||
+    Not, // !
 
     // logical operators
     Equal, // ==
-    NotEqual, // =/=
+    NotEqual, // !=
     LessThan, // <
     GreaterThan, // >
     LessThanOrEqual, // <=
