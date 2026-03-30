@@ -1,6 +1,8 @@
 #[derive(Debug, PartialEq, Clone)]
 pub enum Token {
     // readable tokens / keywords
+    Start,
+    End,
     NumberType, 
     DecimalType,
     LetterType,
