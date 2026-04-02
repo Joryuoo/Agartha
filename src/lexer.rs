@@ -1,6 +1,6 @@
 use crate::token::Token;
 
-pub fn tokenize(input: &str) -> Result<Vec<Token>, <String>{ // returns vector of tokens if valid else an error string
+pub fn tokenize(input: &str) -> Result<Vec<Token>, String>{ // returns vector of tokens if valid else an error string
     let mut tokens = Vec::new();
     let mut  chars = input.chars().peekable();
 
@@ -127,7 +127,7 @@ pub fn tokenize(input: &str) -> Result<Vec<Token>, <String>{ // returns vector o
             }
             //for comment or divide
             '/' => {
-                chars.next()
+                chars.next();
                 if let Some(&'/') = chars.peek(){
                     //comment logiczzzz
                     while let Some(&ch) = chars.peek(){
@@ -144,18 +144,18 @@ pub fn tokenize(input: &str) -> Result<Vec<Token>, <String>{ // returns vector o
 
             //for string literal
             '"' => {
-                chars.next() // consume ang una na "
+                chars.next(); // consume ang una na "
                 let mut val = String::new();  // string literal
                 while let Some(&ch) = char.peek(){
                     if ch == '"' { //end string
                         break;
                     }
-                    val.push(ch)
+                    val.push(ch);
                     chars.next() //consume character
                 }
                 //check if naa ang end quote
                 if let Some(&'"') = chars.peek(){
-                    chars.next() // consume end quote
+                    chars.next(); // consume end quote
                     token.push(Token::WordLiteral(val));
                 } else{
                     return Err(format!("Unsa mani dong! Asa man imong end quote dong?"));
