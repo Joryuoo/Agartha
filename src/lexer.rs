@@ -134,7 +134,7 @@ pub fn tokenize(input: &str) -> Result<Vec<Token>, String>{ // returns vector of
                         if ch == '\n' {
                             break;
                         }
-                        chars.next() // consume everything until newline lol
+                        chars.next(); // consume everything until newline lol
                     }
                     continue; //balik babaw
                 } else{
@@ -146,33 +146,33 @@ pub fn tokenize(input: &str) -> Result<Vec<Token>, String>{ // returns vector of
             '"' => {
                 chars.next(); // consume ang una na "
                 let mut val = String::new();  // string literal
-                while let Some(&ch) = char.peek(){
+                while let Some(&ch) = chars.peek(){
                     if ch == '"' { //end string
                         break;
                     }
                     val.push(ch);
-                    chars.next() //consume character
+                    chars.next(); //consume character
                 }
                 //check if naa ang end quote
                 if let Some(&'"') = chars.peek(){
                     chars.next(); // consume end quote
-                    token.push(Token::WordLiteral(val));
+                    tokens.push(Token::WordLiteral(val));
                 } else{
                     return Err(format!("Unsa mani dong! Asa man imong end quote dong?"));
                 }
             }
 
-            '+' => {tokens.push(Token::Add); chars.next()}
-            '-' => {tokens.push(Token::Subtract); chars.next()}
-            '*' => {tokens.push(Token::Multiply); chars.next()}
-            '%' => {tokens.push(Token::Modulo); chars.next()}
-            '&' => {tokens.push(Token::Concat); chars.next()}
-            '^' => {tokens.push(Token::Exponentiate); chars.next()}
-            '(' => {tokens.push(Token::LeftParen); chars.next()}
-            ')' => {tokens.push(Token::RightParen); chars.next()}
-            '{' => {tokens.push(Token::LeftBrace); char.next()}
-            '}' => {tokens.push(Token::RightBrace); chars.next()}
-            ';' => {tokens.push(Token::Semicolon); chars.next()}
+            '+' => {tokens.push(Token::Add); chars.next();}
+            '-' => {tokens.push(Token::Subtract); chars.next();}
+            '*' => {tokens.push(Token::Multiply); chars.next();}
+            '%' => {tokens.push(Token::Modulo); chars.next();}
+            '&' => {tokens.push(Token::Concat); chars.next();}
+            '^' => {tokens.push(Token::Exponentiate); chars.next();}
+            '(' => {tokens.push(Token::LeftParen); chars.next();}
+            ')' => {tokens.push(Token::RightParen); chars.next();}
+            '{' => {tokens.push(Token::LeftBrace); chars.next();}
+            '}' => {tokens.push(Token::RightBrace); chars.next();}
+            ';' => {tokens.push(Token::Semicolon); chars.next();}
             _ => return Err(format!("Unsa mani dong!"))
         }
     }
